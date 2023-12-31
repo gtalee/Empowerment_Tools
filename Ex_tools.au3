@@ -1,5 +1,5 @@
 ;此文件为实现赋权、创建、删除用户、遍历列出计算机用户    功能函数
-;-----------------声明“yk_user_tools_main.au3中的全局变量----------”
+;-----------------声明“main.au3”中的全局变量-------------------------
 Global $Input_DirPath
 Global $Input_UserName
 Global $Tools_F
