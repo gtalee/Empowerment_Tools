@@ -25,7 +25,6 @@ Func _Empowerment_Select()
 		Case GUICtrlRead($Tools_F) = 1
 			;MsgBox(64,"info","icacls " & $_Path & " /deny " & $_UserName & ":(OI)(CI)(F) /t")
 			Run(@ComSpec & " /C " & "icacls " & $_Path & " /grant:r " & $_UserName & ":(OI)(CI)(F) /t")
-			;_RunDos("icacls " & $Input_DirPath & " /grant:r " & $Input_UserName & ":(OI)(CI)(F) /t",@SW_SHOW)
 		Case GUICtrlRead($Tools_R) = 1
 			Run(@ComSpec & " /C " & "icacls " & $_Path & " /grant:r " & $_UserName & ":(OI)(CI)(R) /t")
 		Case GUICtrlRead($Tools_Deny) = 1
