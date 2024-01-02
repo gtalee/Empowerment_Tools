@@ -41,7 +41,11 @@ global $Input_UserName = GUICtrlCreateInput("此处输入需要赋权的用户�
 GUICtrlSetFont(-1,13)
 GUICtrlSetBkColor(-1,0x555555)
 
-Global $Button_Start_Empowerment = GUICtrlCreateButton("Empowerment",175,205,100,40)
+Global $Button_Start_Empowerment = GUICtrlCreateButton("Empowerment",100,205,100,40)
+GUICtrlSetFont(-1,10)
+GUICtrlSetBkColor(-1,0x555555)
+
+Global $Button_Clear_String = GUICtrlCreateButton("Clear",250,205,100,40)
 GUICtrlSetFont(-1,10)
 GUICtrlSetBkColor(-1,0x555555)
 
@@ -54,8 +58,9 @@ Global $Tools_Deny = GUICtrlCreateRadio("Deny（禁止访问、不可见）",280
 
 Global $Tools_TF = GUICtrlCreateRadio("F(文件所有权)",10,260,100,20)
 
-Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不继承传播)",10,290,130,20)
+Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不继承传播)",115,290,130,20)
 
+;Global $Tools_N = GUICtrlCreateRadio("N(无权限)",10,290,100,20)
 ;##############################################################################################################################
 Global $Iput_AddUser = GUICtrlCreateInput("此处输入要创建/删除的用户名（英文）",75,350,300,30,$SS_CENTER)
 GUICtrlSetFont(-1,13)
@@ -90,6 +95,9 @@ while 1
 			User_Add()
 		Case $Button_Delete_User
 			User_Delete()
+		Case $Button_Clear_String
+			GUICtrlSetData($Input_DirPath,"")
+			GUICtrlSetData($Input_UserName,"")
     EndSwitch
 WEnd
 ;设置窗口透明度
