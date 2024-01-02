@@ -58,7 +58,7 @@ Global $Tools_Deny = GUICtrlCreateRadio("Deny（禁止访问、不可见）",280
 
 Global $Tools_TF = GUICtrlCreateRadio("F(文件所有权)",10,260,100,20)
 
-Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不继承传播)",115,290,130,20)
+Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不递归)",115,290,130,20)
 
 ;Global $Tools_N = GUICtrlCreateRadio("N(无权限)",10,290,100,20)
 ;##############################################################################################################################
