@@ -2,6 +2,7 @@
 ;-----------------声明“main.au3”中的全局变量-------------------------
 Global $Input_DirPath
 Global $Input_UserName
+Global $Iput_AddUser
 Global $Tools_F
 Global $Tools_R
 Global $Tools_Deny
@@ -16,10 +17,20 @@ Global $_UserName;用以存储读取输入的用户名字符
 #include <Array.au3>
 #include <Process.au3>
 
+
+
 Func User_Empowerment()
-	If _FileExists() = 1 And UserExists() = 1 Then
-		_Empowerment_Select()
+	Local $_Fun_State = _FileExists()
+	local $_Fun_State2 = UserExists($Input_UserName)
+	If $_Fun_State = 0 Then
+		MsgBox(16,"Error","The Path Not Found!" & @error)
 	EndIf
+	If $_Fun_State2 = 0 Then
+		MsgBox(16,"Error","User Not Found!")
+		Return 0
+	EndIf
+	_Empowerment_Select()
+	Return 1
 EndFunc
 
 Func _Empowerment_Select()
@@ -43,26 +54,44 @@ EndFunc
 
 Func _FileExists()
 	$_Path = GUICtrlRead($Input_DirPath)
+	GUICtrlSetData($Input_DirPath,"")
 	Switch FileExists($_Path)
 		Case 0
-			MsgBox(16,"Error","The Path Not Found!" & @error)
-			SetError(-1)
 			Return 0
 		Case 1
 			Return 1;表示输入的绝对路径文件或文件夹存在
 	EndSwitch
 EndFunc
 
-Func UserExists()
-	$_UserName = GUICtrlRead($Input_UserName)
+Func UserExists($iUserName)
+	$_UserName = GUICtrlRead($iUserName)
+	MsgBox(64,"info",":" & $_UserName)
+	GUICtrlSetData($Input_UserName,"")
 	Local $tUserInfo = DllStructCreate("wchar[256];wchar[256];dword;dword")
 	Local $iResult = DllCall("netapi32.dll", "long", "NetUserGetInfo", "wstr", @ComputerName, "wstr", $_UserName, "dword", 0, "ptr*", DllStructGetPtr($tUserInfo))
-	;_ArrayDisplay($iResult)
+	_ArrayDisplay($iResult)
 	If $iResult[0] = 0  Or $_UserName = "everyone" Then
 		return 1;表示输入的用户名存在
 	Else
 		
-		MsgBox(16,"Error","User Not Found!")
 		return 0
 	EndIf
 Endfunc
+
+Func User_Add()
+	MsgBox(64,"info",":" & $Iput_AddUser)
+	If UserExists($Iput_AddUser) = 0 Then
+		Run(@ComSpec & " /C " & "net user " & $_UserName & " /add" )
+	Else
+		MsgBox(16,"Error","用户已存在！")
+	EndIf
+EndFunc
+
+Func User_Delete()
+	$_UserName = GUICtrlRead($Iput_AddUser)
+	If UserExists($_UserName) = 1 Then
+		Run(@ComSpec & " /C " & "net user " & $_UserName & " /delete" )
+	Else
+		MsgBox(16,"Error","用户不存在！")
+	EndIf
+EndFunc
