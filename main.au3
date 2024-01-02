@@ -1,3 +1,6 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Outfile_x64=User_Empowerment_Tools_x64.Exe
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ;此文件为GUI主框架、功能为引用外部文件、调用函数
 #include-once
 #include <WinAPI.au3>
@@ -6,7 +9,7 @@
 #include <MsgBoxConstants.au3>
 #include <StaticConstants.au3>
 #include <EditConstants.au3>
-#include "Ex_tools.au3"
+#include "Ex_tools2.au3"
 
 Global $iTools_hWnd = GUICreate("User Tools-Server",450,500,-1,-1,$WS_POPUP,$WS_EX_ACCEPTFILES)
 GUISetBkColor(0x999999)
@@ -15,7 +18,7 @@ GUISetBkColor(0x999999)
 
 GUICtrlCreateLabel("User Empowerment Tools",0,0,420,30,$SS_CENTERIMAGE,$GUI_WS_EX_PARENTDRAG)
 GUICtrlSetBkColor(-1,0x555555)
-GUICtrlSetColor(-1,0x333333)
+GUICtrlSetColor(-1,0xFF0000)
 GUIctrlSetFont(-1, 16, 400, 0, 'Verdana')
 
 $GUI_CLOSE = GUICtrlCreateLabel("x",420,0,30,30,$SS_CENTER)
@@ -42,23 +45,27 @@ Global $Button_Start_Empowerment = GUICtrlCreateButton("Empowerment",175,205,100
 GUICtrlSetFont(-1,10)
 GUICtrlSetBkColor(-1,0x555555)
 
-Global $Tools_F = GUICtrlCreateRadio("F（读写）",75,260,70,20)
+Global $Tools_F = GUICtrlCreateRadio("F（读写）",115,260,70,20)
 GUICtrlSetState(-1,1)
 
-Global $Tools_R = GUICtrlCreateRadio("R（只读）",160,260,70,20)
+Global $Tools_R = GUICtrlCreateRadio("R（只读）",200,260,70,20)
 
-Global $Tools_Deny = GUICtrlCreateRadio("Deny（禁止访问、不可见）",240,260,160,20)
+Global $Tools_Deny = GUICtrlCreateRadio("Deny（禁止访问、不可见）",280,260,160,20)
+
+Global $Tools_TF = GUICtrlCreateRadio("F(文件所有权)",10,260,100,20)
+
+Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不继承传播)",10,290,130,20)
 
 ;##############################################################################################################################
-Global $Iput_AddUser = GUICtrlCreateInput("此处输入要创建的用户名（英文）",75,300,300,30,$SS_CENTER)
+Global $Iput_AddUser = GUICtrlCreateInput("此处输入要创建的用户名（英文）",75,350,300,30,$SS_CENTER)
 GUICtrlSetFont(-1,13)
 GUICtrlSetBkColor(-1,0x555555)
 
-Global $Button_Create_User = GUICtrlCreateButton("Create",100,345,100,40)
+Global $Button_Create_User = GUICtrlCreateButton("Create",100,395,100,40)
 GUICtrlSetFont(-1,10)
 GUICtrlSetBkColor(-1,0x555555)
 
-Global $Button_Delete_User = GUICtrlCreateButton("Delete",250,345,100,40)
+Global $Button_Delete_User = GUICtrlCreateButton("Delete",250,395,100,40)
 GUICtrlSetFont(-1,10)
 GUICtrlSetBkColor(-1,0x555555)
 ;##################################################################################################################################
