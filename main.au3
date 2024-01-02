@@ -57,7 +57,7 @@ Global $Tools_TF = GUICtrlCreateRadio("F(文件所有权)",10,260,100,20)
 Global $Tools_F_A = GUICtrlCreateRadio("F(读写&&不继承传播)",10,290,130,20)
 
 ;##############################################################################################################################
-Global $Iput_AddUser = GUICtrlCreateInput("此处输入要创建的用户名（英文）",75,350,300,30,$SS_CENTER)
+Global $Iput_AddUser = GUICtrlCreateInput("此处输入要创建/删除的用户名（英文）",75,350,300,30,$SS_CENTER)
 GUICtrlSetFont(-1,13)
 GUICtrlSetBkColor(-1,0x555555)
 
@@ -86,6 +86,10 @@ while 1
 			If MsgBox($MB_ICONQUESTION+$MB_YESNO,"Info","确认关闭？") = $IDYES Then Exit
         Case $Button_Start_Empowerment
             User_Empowerment();赋权函数，执行用户的赋权操作，定义在“Ex_tools.au3”
+		Case $Button_Create_User
+			User_Add()
+		Case $Button_Delete_User
+			User_Delete()
     EndSwitch
 WEnd
 ;设置窗口透明度
