@@ -85,7 +85,7 @@ while 1
 		Case $GUI_CLOSE
 			If MsgBox($MB_ICONQUESTION+$MB_YESNO,"Info","确认关闭？") = $IDYES Then Exit
         Case $Button_Start_Empowerment
-            User_Empowerment();赋权函数，执行用户的赋权操作，定义在“yk_tools.au3”
+            User_Empowerment();赋权函数，执行用户的赋权操作，定义在“Ex_tools.au3”
     EndSwitch
 WEnd
 ;设置窗口透明度
