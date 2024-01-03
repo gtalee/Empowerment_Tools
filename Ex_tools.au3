@@ -48,7 +48,7 @@ Func _Empowerment_Select()
 			;MsgBox(64,"info",":" & $_Path)
 			Run(@ComSpec & " /C " & "takeown /f " &$_Path & " /a /r /d y");获取文件所有权
 		Case GUICtrlRead($Tools_F_A) = 1
-			Run(@ComSpec & " /C " & "icacls " & $_Path & " /grant:r " & $_UserName & ":(OI)(CI)(F)");注意：不递归
+			Run(@ComSpec & " /C " & "icacls " & $_Path & " /grant:r " & $_UserName & ":F");注意：不递归
 		;Case GUICtrlRead($Tools_N) = 1
 			;Run(@ComSpec & " /C " & "icacls " & $_Path & " /grant:r " & $_UserName & ":N /t")
 	EndSelect
